@@ -1,0 +1,93 @@
+parseInt(data.modelList[i].value2
+
+
+
+
+
+
+public Integer getApprovedFileCount(String fromDate, String um_id) {
+		Integer count = 0;
+		String query = "select count(Distinct cfs_fd_mid) from CaseFileStage,CaseFileDetail  where "
+				+ "fd_id=cfs_fd_mid and cfs_stage_lid in(350986) and cfs_reject_status='N' "
+				+ " and to_date(to_char(cfs_stage_date,'yyyy-mm-dd'),'yyyy-mm-dd') = to_date('"
+				+ fromDate + "','yyyy-mm-dd')";
+
+		String user = " and cfs_assign_to in(select um_id from User where um_id = '"
+				+ um_id + "')";
+
+		if (um_id == null) {
+			query = query;
+		} else
+			query = query + user;
+		count = Integer.parseInt(em.createQuery(query).getSingleResult()
+				.toString());
+		System.out.println("CommonReportsService.getApprovedFileCount()"
+				+ count);
+		return count;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+select (select lk_longname from Lookup where lk_id=(select um_vendor_id from User where um_id=ib.ib_cr_by)) as team,(select username from User where um_id=ib.ib_cr_by),(select um_fullname from User where um_id=ib.ib_cr_by), "
+				+ "count(distinct ib_id ) ,  count(cfd.fd_id) from InwardBundle  ib, CaseFileDetail cfd where ib.ib_id=cfd.ib_mid and ib.ib_cr_by in (select um_id from User where um_vendor_id='"
+				+ vendor_id
+				+ "' )  and ib.ib_inward_date > '"
+				+ fromDt
+				+ "' and "
+				+ " ib.ib_inward_date '"
+				+ toDt
+				+ "'  group by ib.ib_cr_by order by team,ib.ib_cr_by";
+
+
+
+SELECT lk2.lk_longname FROM Lookup lk2 WHERE lk2.lk_id = c.fd_stage_lid
+
+
+"select count(Distinct cfs_fd_mid) from CaseFileStage,CaseFileDetail  where fd_id=cfs_fd_mid and cfs_stage_lid in(236)"
+				+ " and fd_case_status = '"
+
+
+
+"select (select lk_longname from Lookup  where lk_id in (select um_vendor_id from User where um_id=pca.pca_cr_by))as team, (select um_fullname from User where um_id=pca.pca_cr_by), 
+
+from PageCountAuditorial pca,CaseFileDetail cfd where pca.pca_cr_by=cfd.ib_mid and pca.pca_cr_by in(select um_id from User where um_vendor_id='"
+				+ vendor_id
+				+ "' )  and ib.ib_inward_date > '"
+				+ fromDt
+				+ "' and "
+				+ " ib.ib_inward_date '"
+				+ toDt
+				+ "'  group by ib.ib_cr_by order by team,ib.ib_cr_by";
+
+
+---------------------------15 july 2022 ------------------------------------------
+select pca_cr_by from dms.page_count_auditorial where pca_fd_mid in(select fd_id from dms.case_file_details where fd_stage_lid='236')
+
+select count(udfl_fd_mid),count(pca.pca_fd_mid) from dms.page_count_auditorial pca, dms.case_file_details cfd,dms.upload_disposed_files_log udf where udf.udfl_fd_mid=cfd.fd_id and cfd.fd_stage_lid='236' and 
+udf.udfl_cr_date='2019-04-03 15:53:27.56'
+
+
+
+
+
+from page_count_auditorial where "
+				+ " to_date(to_char(pca_cr_date,'yyyy-mm-dd'),'yyyy-mm-dd') = to_date('"
+				+ fromDate
+
+pca_cr_by;	
+
+	@Column(name = "pca_cr_date")
+	private Date   pca_cr_date;
+
+
+
